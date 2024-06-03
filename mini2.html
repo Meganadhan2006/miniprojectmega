@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	.img
+	{
+		width:150px;
+		height:150px;
+		
+	}
+	#product 
+	{
+	margin-top:100px;
+	}
+	#main
+	{
+	margin-top:100px;
+	color:white;
+	background-color:black;
+	}
+	
+	#cart
+	{
+		border-style:double;
+		border-width:5px;
+		text-align:center;
+
+	}
+	
+	</style>
+   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">  TOYS WORLD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse p-3" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                     <li class="nav-item active">
+                        <a class="nav-link " href="mini1.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mini2.html">Products</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mini3.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	
+			<center><h1 id="main">TOY'S </h1></center>
+			<div class="row" id="product">
+			<div class="col">
+                <div class="card">
+                    <img src="truck.jpg" class="card img mx-auto d-block" alt="Product 1">
+                    <div class="card-body">
+                       <center><h5 class="card-title">Mini Monster truck-300<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('Mini Monster truck', 300)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			<div class="col">
+                <div class="card">
+                    <img src="kitchen.jpg" class="card  img mx-auto d-block " alt="Product 1">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Kitchen Set-200<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('Kitchen Set -200', 200)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			</div>
+			<div class="row" id="product">
+			<div class="col">
+                <div class="card">
+                    <img src="jcb.jpg" class="card img mx-auto d-block" alt="Product 1">
+                    <div class="card-body">
+                        <center><h5 class="card-title">MINI JCB-500<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('MINI JCB', 500)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			<div class="col">
+                <div class="card">
+                    <img src="chess.jpg" class="card img mx-auto d-block" alt="Product 1">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Chess Board-250<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('chess board', 250)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			</div>
+			<div class="row" id="product">
+			<div class="col">
+                <div class="card">
+                    <img src="car.jpg" class="card img mx-auto d-block" alt="Product 1">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Remote control car-750<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('remote car', 750)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			<div class="col">
+                <div class="card">
+                    <img src="rubiks.jpg" class="card img mx-auto d-block" alt="Product 1">
+                    <div class="card-body">
+                        <center><h5 class="card-title">Rubik's cube-150<i class="fa fa-rupee"></i></h5>
+                       <button class="btn btn-primary" onclick="addToCart('remote car', 150)">Add to Cart</button></a></center>
+                    </div>
+                </div>
+            </div>
+			</div>
+			
+		  <footer class="bg-dark text-white py-4" id="check">   <section id="cart">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items" class="cart">
+        </div>
+        <div class="cart">
+            <h3>Total: $<span id="total">0</span></h3>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </section></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	 <script>
+        // JavaScript code for shopping cart functionality
+        let cartItems = [];
+        function addToCart(productName, price) {
+            cartItems.push({ productName, price });
+            updateCart();
+        }
+        function updateCart() {
+            const cartElement = document.getElementById('cart-items');
+            cartElement.innerHTML = '';
+            let total = 0;
+            cartItems.forEach(item => {
+                cartElement.innerHTML += `<div>${item.productName} - $${item.price}</div>`;
+                total += item.price;
+            });
+            document.getElementById('total').innerText = total;
+        }
+        function checkout() {
+            alert('Thank you for your purchase!');
+            cartItems = [];
+            updateCart();
+        }
+    </script>
+</body>
+</html>
